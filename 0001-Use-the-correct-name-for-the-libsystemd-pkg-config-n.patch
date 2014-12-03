@@ -1,0 +1,38 @@
+From 7f60fe4fd236b227293be9b70aba11bc1abdb30e Mon Sep 17 00:00:00 2001
+From: Ikey Doherty <michael.i.doherty@intel.com>
+Date: Wed, 20 Jan 2016 14:07:25 +0000
+Subject: [PATCH] Use the *correct* name for the libsystemd pkg-config, not the
+ legacy one
+
+Signed-off-by: Ikey Doherty <michael.i.doherty@intel.com>
+---
+ configure.ac | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/configure.ac b/configure.ac
+index 96c0242..08d4ba1 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -836,7 +836,7 @@ AC_ARG_WITH([systemd-daemon],
+ 	AS_HELP_STRING([--with-systemd-daemon],
+ 		[support systemd socket activation (default: auto)]),
+ 	[WITH_SYSTEMD_DAEMON=$withval], [WITH_SYSTEMD_DAEMON=auto])
+-PKG_CHECK_MODULES([SYSTEMD_DAEMON], [libsystemd-daemon],
++PKG_CHECK_MODULES([SYSTEMD_DAEMON], [libsystemd],
+                   [HAVE_SYSTEMD_DAEMON=yes],
+                   [PKG_CHECK_MODULES([SYSTEMD_DAEMON], [libsystemd],
+                                      [HAVE_SYSTEMD_DAEMON=yes], [HAVE_SYSTEMD_DAEMON=no])])
+@@ -847,8 +847,8 @@ if test "x$WITH_SYSTEMD_DAEMON" = xyes; then
+ 	if test "x$HAVE_SYSTEMD_DAEMON" = xno; then
+ 		AC_MSG_ERROR([systemd support requested but no library has been found])
+ 	fi
+-	AC_DEFINE(HAVE_SYSTEMD_DAEMON, 1, [Define to 1 if libsystemd-daemon is available])
+-	REQUIRED_LIBS="$REQUIRED_LIBS libsystemd-daemon"
++	AC_DEFINE(HAVE_SYSTEMD_DAEMON, 1, [Define to 1 if libsystemd is available])
++	REQUIRED_LIBS="$REQUIRED_LIBS libsystemd"
+ fi
+ AM_CONDITIONAL([HAVE_SYSTEMD_DAEMON], [test "x$HAVE_SYSTEMD_DAEMON" = "xyes"])
+ 
+-- 
+2.7.0
+

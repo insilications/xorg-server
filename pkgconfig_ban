@@ -1,0 +1,11 @@
+#
+# This file contains pkgconfig build requirements that get picked up but are 
+# undesirable. One name per line, no whitespace.
+#
+"$LIBGBM"
+khronos-opengl-registry
+wayland-client
+libsystemd-daemon
+tslib-0.0
+libsha1
+fontutil
