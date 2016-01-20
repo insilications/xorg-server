@@ -4,7 +4,7 @@
 #
 Name     : xorg-server
 Version  : 1.18.0
-Release  : 15
+Release  : 16
 URL      : http://xorg.freedesktop.org/releases/individual/xserver/xorg-server-1.18.0.tar.bz2
 Source0  : http://xorg.freedesktop.org/releases/individual/xserver/xorg-server-1.18.0.tar.bz2
 Summary  : Modular X.Org X Server
@@ -197,7 +197,6 @@ rm -rf %{buildroot}
 /usr/include/xorg/dixstruct.h
 /usr/include/xorg/dri.h
 /usr/include/xorg/dri2.h
-/usr/include/xorg/dri3.h
 /usr/include/xorg/dristruct.h
 /usr/include/xorg/edid.h
 /usr/include/xorg/events.h
