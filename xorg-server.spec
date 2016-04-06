@@ -4,7 +4,7 @@
 #
 Name     : xorg-server
 Version  : 1.18.3
-Release  : 18
+Release  : 19
 URL      : http://xorg.freedesktop.org/releases/individual/xserver/xorg-server-1.18.3.tar.bz2
 Source0  : http://xorg.freedesktop.org/releases/individual/xserver/xorg-server-1.18.3.tar.bz2
 Summary  : Modular X.Org X Server
@@ -21,7 +21,9 @@ BuildRequires : flex
 BuildRequires : font-util-dev
 BuildRequires : freetype-dev
 BuildRequires : libdmx-dev
+BuildRequires : libgcrypt-dev
 BuildRequires : libxslt-bin
+BuildRequires : nettle-dev
 BuildRequires : pkgconfig(bigreqsproto)
 BuildRequires : pkgconfig(compositeproto)
 BuildRequires : pkgconfig(dri2proto)
