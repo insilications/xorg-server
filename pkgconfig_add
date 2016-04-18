@@ -16,3 +16,4 @@ pciaccess
 xfont
 xf86dgaproto
 fontutil
+xshmfence
