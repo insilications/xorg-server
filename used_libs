@@ -1,0 +1,17 @@
+libGL.so.1
+libX11.so.6
+libXau.so.6
+libXdmcp.so.6
+libXext.so.6
+libXfont.so.1
+libc.so.6
+libdl.so.2
+libdrm.so.2
+libm.so.6
+libnettle.so.6
+libpciaccess.so.0
+libpixman-1.so.0
+libsystemd.so.0
+libudev.so.1
+libunwind.so.8
+libxshmfence.so.1

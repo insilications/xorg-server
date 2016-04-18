@@ -4,7 +4,7 @@
 #
 Name     : xorg-server
 Version  : 1.18.3
-Release  : 19
+Release  : 20
 URL      : http://xorg.freedesktop.org/releases/individual/xserver/xorg-server-1.18.3.tar.bz2
 Source0  : http://xorg.freedesktop.org/releases/individual/xserver/xorg-server-1.18.3.tar.bz2
 Summary  : Modular X.Org X Server
@@ -61,6 +61,7 @@ BuildRequires : pkgconfig(xkbfile)
 BuildRequires : pkgconfig(xmu)
 BuildRequires : pkgconfig(xorg-macros)
 BuildRequires : pkgconfig(xres)
+BuildRequires : pkgconfig(xshmfence)
 BuildRequires : xmlto
 BuildRequires : xtrans-dev
 Patch1: 0001-sdksyms.sh-Make-sdksyms.sh-work-with-gcc5.patch
@@ -135,7 +136,7 @@ setuid components for the xorg-server package.
 %build
 export CFLAGS="-O2 -g"
 unset LDFLAGS
-%configure --disable-static --with-int10=x86emu --enable-config-udev --enable-config-udev-kms  --enable-dri2 --enable-dri --enable-dbe --enable-record --disable-systemd-logind
+%configure --disable-static --with-int10=x86emu --enable-config-udev --enable-config-udev-kms  --enable-dri2 --enable-dri --enable-dri3 --enable-dbe --enable-record --disable-systemd-logind
 make V=1  %{?_smp_mflags}
 
 %install
@@ -191,6 +192,7 @@ rm -rf %{buildroot}
 /usr/include/xorg/dixstruct.h
 /usr/include/xorg/dri.h
 /usr/include/xorg/dri2.h
+/usr/include/xorg/dri3.h
 /usr/include/xorg/dristruct.h
 /usr/include/xorg/edid.h
 /usr/include/xorg/events.h
