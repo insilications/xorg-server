@@ -4,7 +4,7 @@
 #
 Name     : xorg-server
 Version  : 1.18.3
-Release  : 21
+Release  : 22
 URL      : http://xorg.freedesktop.org/releases/individual/xserver/xorg-server-1.18.3.tar.bz2
 Source0  : http://xorg.freedesktop.org/releases/individual/xserver/xorg-server-1.18.3.tar.bz2
 Summary  : Modular X.Org X Server
@@ -337,6 +337,7 @@ rm -rf %{buildroot}
 /usr/lib64/xorg/modules/libexa.so
 /usr/lib64/xorg/modules/libfb.so
 /usr/lib64/xorg/modules/libfbdevhw.so
+/usr/lib64/xorg/modules/libglamoregl.so
 /usr/lib64/xorg/modules/libint10.so
 /usr/lib64/xorg/modules/libshadow.so
 /usr/lib64/xorg/modules/libshadowfb.so
