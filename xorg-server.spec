@@ -4,7 +4,7 @@
 #
 Name     : xorg-server
 Version  : 1.18.3
-Release  : 20
+Release  : 21
 URL      : http://xorg.freedesktop.org/releases/individual/xserver/xorg-server-1.18.3.tar.bz2
 Source0  : http://xorg.freedesktop.org/releases/individual/xserver/xorg-server-1.18.3.tar.bz2
 Summary  : Modular X.Org X Server
@@ -22,6 +22,7 @@ BuildRequires : font-util-dev
 BuildRequires : freetype-dev
 BuildRequires : libdmx-dev
 BuildRequires : libgcrypt-dev
+BuildRequires : libxshmfence-dev
 BuildRequires : libxslt-bin
 BuildRequires : nettle-dev
 BuildRequires : pkgconfig(bigreqsproto)
@@ -136,7 +137,7 @@ setuid components for the xorg-server package.
 %build
 export CFLAGS="-O2 -g"
 unset LDFLAGS
-%configure --disable-static --with-int10=x86emu --enable-config-udev --enable-config-udev-kms  --enable-dri2 --enable-dri --enable-dri3 --enable-dbe --enable-record --disable-systemd-logind
+%configure --disable-static --with-int10=x86emu --enable-config-udev --enable-config-udev-kms  --enable-dri2 --enable-dri --enable-dri3 --enable-dbe --enable-record --disable-systemd-logind --enable-glamor
 make V=1  %{?_smp_mflags}
 
 %install
@@ -211,6 +212,7 @@ rm -rf %{buildroot}
 /usr/include/xorg/gcstruct.h
 /usr/include/xorg/geext.h
 /usr/include/xorg/geint.h
+/usr/include/xorg/glamor.h
 /usr/include/xorg/globals.h
 /usr/include/xorg/glx_extinit.h
 /usr/include/xorg/glyphstr.h
