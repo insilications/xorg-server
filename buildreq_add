@@ -10,3 +10,4 @@ xtrans-dev
 nettle-dev
 libgcrypt-dev
 libxshmfence-dev
+graphviz
