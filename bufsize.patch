@@ -1,0 +1,13 @@
+--- xorg-server-1.18.3/os/io.c~	2016-04-04 18:33:37.000000000 +0000
++++ xorg-server-1.18.3/os/io.c	2016-05-27 00:03:37.197002535 +0000
+@@ -132,8 +132,8 @@
+ 				  ((xBigReq *)(req))->length)
+ 
+ #define MAX_TIMES_PER         10
+-#define BUFSIZE 4096
+-#define BUFWATERMARK 8192
++#define BUFSIZE 16384
++#define BUFWATERMARK 32768
+ 
+ /*
+  *   A lot of the code in this file manipulates a ConnectionInputPtr:

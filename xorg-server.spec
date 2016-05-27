@@ -4,7 +4,7 @@
 #
 Name     : xorg-server
 Version  : 1.18.3
-Release  : 25
+Release  : 26
 URL      : http://xorg.freedesktop.org/releases/individual/xserver/xorg-server-1.18.3.tar.bz2
 Source0  : http://xorg.freedesktop.org/releases/individual/xserver/xorg-server-1.18.3.tar.bz2
 Summary  : Modular X.Org X Server
@@ -70,6 +70,7 @@ BuildRequires : xtrans-dev
 Patch1: 0001-sdksyms.sh-Make-sdksyms.sh-work-with-gcc5.patch
 Patch2: mmap-offset.patch
 Patch3: build.patch
+Patch4: bufsize.patch
 
 %description
 X Server
@@ -137,6 +138,7 @@ setuid components for the xorg-server package.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 export CFLAGS="-O3 -g -fopt-info-vec "
@@ -144,10 +146,10 @@ unset LDFLAGS
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -flto -falign-functions=32 -O3 -fno-semantic-interposition "
-export FCFLAGS="$CFLAGS -flto -falign-functions=32 -O3 -fno-semantic-interposition "
-export FFLAGS="$CFLAGS -flto -falign-functions=32 -O3 -fno-semantic-interposition "
-export CXXFLAGS="$CXXFLAGS -flto -falign-functions=32 -O3 -fno-semantic-interposition "
+export CFLAGS="$CFLAGS -O3 -fno-semantic-interposition -falign-functions=32 -flto "
+export FCFLAGS="$CFLAGS -O3 -fno-semantic-interposition -falign-functions=32 -flto "
+export FFLAGS="$CFLAGS -O3 -fno-semantic-interposition -falign-functions=32 -flto "
+export CXXFLAGS="$CXXFLAGS -O3 -fno-semantic-interposition -falign-functions=32 -flto "
 %configure --disable-static --with-int10=x86emu --enable-config-udev --enable-config-udev-kms  --enable-dri2 --enable-dri --enable-dri3 --enable-dbe --enable-record --disable-systemd-logind --enable-glamor
 make V=1  %{?_smp_mflags}
 
