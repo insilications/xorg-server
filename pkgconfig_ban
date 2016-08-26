@@ -4,7 +4,6 @@
 #
 "$LIBGBM"
 khronos-opengl-registry
-wayland-client
 libsystemd-daemon
 tslib-0.0
 libsha1

@@ -4,7 +4,7 @@
 #
 Name     : xorg-server
 Version  : 1.18.4
-Release  : 27
+Release  : 28
 URL      : http://xorg.freedesktop.org/releases/individual/xserver/xorg-server-1.18.4.tar.bz2
 Source0  : http://xorg.freedesktop.org/releases/individual/xserver/xorg-server-1.18.4.tar.bz2
 Summary  : Modular X.Org X Server
@@ -147,10 +147,10 @@ unset LDFLAGS
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -falign-functions=32 -flto -O3 -fno-semantic-interposition "
-export FCFLAGS="$CFLAGS -falign-functions=32 -flto -O3 -fno-semantic-interposition "
-export FFLAGS="$CFLAGS -falign-functions=32 -flto -O3 -fno-semantic-interposition "
-export CXXFLAGS="$CXXFLAGS -falign-functions=32 -flto -O3 -fno-semantic-interposition "
+export CFLAGS="$CFLAGS -O3 -fno-semantic-interposition -falign-functions=32 "
+export FCFLAGS="$CFLAGS -O3 -fno-semantic-interposition -falign-functions=32 "
+export FFLAGS="$CFLAGS -O3 -fno-semantic-interposition -falign-functions=32 "
+export CXXFLAGS="$CXXFLAGS -O3 -fno-semantic-interposition -falign-functions=32 "
 %configure --disable-static --with-int10=x86emu --enable-config-udev --enable-config-udev-kms  --enable-dri2 --enable-dri --enable-dri3 --enable-dbe --enable-record --disable-systemd-logind --enable-glamor
 make V=1  %{?_smp_mflags}
 
