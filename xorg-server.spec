@@ -4,7 +4,7 @@
 #
 Name     : xorg-server
 Version  : 1.18.4
-Release  : 28
+Release  : 29
 URL      : http://xorg.freedesktop.org/releases/individual/xserver/xorg-server-1.18.4.tar.bz2
 Source0  : http://xorg.freedesktop.org/releases/individual/xserver/xorg-server-1.18.4.tar.bz2
 Summary  : Modular X.Org X Server
@@ -65,6 +65,7 @@ BuildRequires : pkgconfig(xmu)
 BuildRequires : pkgconfig(xorg-macros)
 BuildRequires : pkgconfig(xres)
 BuildRequires : pkgconfig(xshmfence)
+BuildRequires : wayland-dev
 BuildRequires : xmlto
 BuildRequires : xtrans-dev
 Patch1: 0001-sdksyms.sh-Make-sdksyms.sh-work-with-gcc5.patch
@@ -147,10 +148,10 @@ unset LDFLAGS
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -fno-semantic-interposition -falign-functions=32 "
-export FCFLAGS="$CFLAGS -O3 -fno-semantic-interposition -falign-functions=32 "
-export FFLAGS="$CFLAGS -O3 -fno-semantic-interposition -falign-functions=32 "
-export CXXFLAGS="$CXXFLAGS -O3 -fno-semantic-interposition -falign-functions=32 "
+export CFLAGS="$CFLAGS -fno-semantic-interposition -falign-functions=32 -O3 "
+export FCFLAGS="$CFLAGS -fno-semantic-interposition -falign-functions=32 -O3 "
+export FFLAGS="$CFLAGS -fno-semantic-interposition -falign-functions=32 -O3 "
+export CXXFLAGS="$CXXFLAGS -fno-semantic-interposition -falign-functions=32 -O3 "
 %configure --disable-static --with-int10=x86emu --enable-config-udev --enable-config-udev-kms  --enable-dri2 --enable-dri --enable-dri3 --enable-dbe --enable-record --disable-systemd-logind --enable-glamor
 make V=1  %{?_smp_mflags}
 
@@ -168,6 +169,7 @@ rm -rf %{buildroot}
 /usr/bin/X
 /usr/bin/Xnest
 /usr/bin/Xvfb
+/usr/bin/Xwayland
 /usr/bin/cvt
 /usr/bin/gtf
 

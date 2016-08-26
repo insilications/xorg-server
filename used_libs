@@ -16,4 +16,5 @@ libpixman-1.so.0
 libsystemd.so.0
 libudev.so.1
 libunwind.so.8
+libwayland-client.so.0
 libxshmfence.so.1
