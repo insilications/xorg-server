@@ -4,7 +4,7 @@
 #
 Name     : xorg-server
 Version  : 1.18.4
-Release  : 29
+Release  : 30
 URL      : http://xorg.freedesktop.org/releases/individual/xserver/xorg-server-1.18.4.tar.bz2
 Source0  : http://xorg.freedesktop.org/releases/individual/xserver/xorg-server-1.18.4.tar.bz2
 Summary  : Modular X.Org X Server
