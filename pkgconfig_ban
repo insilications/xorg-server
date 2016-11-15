@@ -8,3 +8,7 @@ libsystemd-daemon
 tslib-0.0
 libsha1
 fontutil
+windowsdriproto
+xcb-ewmh
+xcb-icccm
+xcb-image
