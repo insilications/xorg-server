@@ -4,7 +4,7 @@
 #
 Name     : xorg-server
 Version  : 1.19.0
-Release  : 31
+Release  : 32
 URL      : http://xorg.freedesktop.org/releases/individual/xserver/xorg-server-1.19.0.tar.bz2
 Source0  : http://xorg.freedesktop.org/releases/individual/xserver/xorg-server-1.19.0.tar.bz2
 Summary  : Modular X.Org X Server
@@ -335,7 +335,7 @@ rm -rf %{buildroot}
 /usr/include/xorg/xserver_poll.h
 /usr/include/xorg/xvdix.h
 /usr/include/xorg/xvmcext.h
-/usr/lib64/pkgconfig/*.pc
+/usr/lib64/pkgconfig/xorg-server.pc
 /usr/share/aclocal/*.m4
 
 %files doc
