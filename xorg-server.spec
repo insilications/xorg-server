@@ -5,10 +5,11 @@
 # Source0 file verified with key 0x5B8A2D50A0ECD0D3 (ajax@nwnk.net)
 #
 Name     : xorg-server
-Version  : 1.19.1
-Release  : 33
-URL      : http://xorg.freedesktop.org/releases/individual/xserver/xorg-server-1.19.1.tar.bz2
-Source0  : http://xorg.freedesktop.org/releases/individual/xserver/xorg-server-1.19.1.tar.bz2
+Version  : 1.19.2
+Release  : 34
+URL      : http://xorg.freedesktop.org/releases/individual/xserver/xorg-server-1.19.2.tar.gz
+Source0  : http://xorg.freedesktop.org/releases/individual/xserver/xorg-server-1.19.2.tar.gz
+Source99 : http://xorg.freedesktop.org/releases/individual/xserver/xorg-server-1.19.2.tar.gz.sig
 Summary  : Modular X.Org X Server
 Group    : Development/Tools
 License  : MIT
@@ -139,24 +140,25 @@ setuid components for the xorg-server package.
 
 
 %prep
-%setup -q -n xorg-server-1.19.1
+%setup -q -n xorg-server-1.19.2
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
 
 %build
 export LANG=C
-export SOURCE_DATE_EPOCH=1484238475
+export SOURCE_DATE_EPOCH=1488568188
 export CFLAGS="-O3 -g -fopt-info-vec "
 unset LDFLAGS
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
 export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
-%configure --disable-static --with-int10=x86emu --enable-config-udev --enable-config-udev-kms  --enable-dri2 --enable-dri --enable-dri3 --enable-dbe --enable-record --disable-systemd-logind --enable-glamor
+%reconfigure --disable-static --with-int10=x86emu --enable-config-udev --enable-config-udev-kms  --enable-dri2 --enable-dri --enable-dri3 --enable-dbe --enable-record --disable-systemd-logind --enable-glamor
 make V=1  %{?_smp_mflags}
 
 %install
+export SOURCE_DATE_EPOCH=1488568188
 rm -rf %{buildroot}
 %make_install
 
