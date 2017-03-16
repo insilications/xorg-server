@@ -1,5 +1,5 @@
 PKG_NAME := xorg-server
-URL := http://xorg.freedesktop.org/releases/individual/xserver/xorg-server-1.19.2.tar.gz
+URL := https://www.x.org/releases/individual/xserver/xorg-server-1.19.3.tar.gz
 
 
 include ../common/Makefile.common
