@@ -17,3 +17,6 @@ xfont
 xf86dgaproto
 fontutil
 xshmfence
+xdmcp
+xau
+epoxy

@@ -5,6 +5,7 @@ libXdmcp.so.6
 libXext.so.6
 libXfont2.so.2
 libc.so.6
+libdbus-1.so.3
 libdl.so.2
 libdrm.so.2
 libepoxy.so.0
@@ -17,4 +18,5 @@ libpthread.so.0
 libsystemd.so.0
 libudev.so.1
 libunwind.so.8
+libwayland-client.so.0
 libxshmfence.so.1

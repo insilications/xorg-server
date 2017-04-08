@@ -6,13 +6,13 @@
 #
 Name     : xorg-server
 Version  : 1.19.3
-Release  : 35
+Release  : 36
 URL      : https://www.x.org/releases/individual/xserver/xorg-server-1.19.3.tar.gz
 Source0  : https://www.x.org/releases/individual/xserver/xorg-server-1.19.3.tar.gz
 Source99 : https://www.x.org/releases/individual/xserver/xorg-server-1.19.3.tar.gz.sig
 Summary  : Modular X.Org X Server
 Group    : Development/Tools
-License  : MIT
+License  : MIT X11
 Requires: xorg-server-bin
 Requires: xorg-server-setuid
 Requires: xorg-server-lib
@@ -72,6 +72,7 @@ BuildRequires : pkgconfig(xorg-macros)
 BuildRequires : pkgconfig(xres)
 BuildRequires : pkgconfig(xshmfence)
 BuildRequires : wayland-dev
+BuildRequires : wayland-protocols-dev
 BuildRequires : xmlto
 BuildRequires : xtrans-dev
 Patch1: 0001-sdksyms.sh-Make-sdksyms.sh-work-with-gcc5.patch
@@ -147,18 +148,18 @@ setuid components for the xorg-server package.
 
 %build
 export LANG=C
-export SOURCE_DATE_EPOCH=1489663985
+export SOURCE_DATE_EPOCH=1491685597
 export CFLAGS="-O3 -g -fopt-info-vec "
 unset LDFLAGS
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
 export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
-%reconfigure --disable-static --with-int10=x86emu --enable-config-udev --enable-config-udev-kms  --enable-dri2 --enable-dri --enable-dri3 --enable-dbe --enable-record --disable-systemd-logind --enable-glamor
+%reconfigure --disable-static --with-int10=x86emu --enable-config-udev --enable-config-udev-kms  --enable-dri2 --enable-dri --enable-dri3 --enable-dbe --enable-record --enable-systemd-logind --enable-glamor --enable-xwayland
 make V=1  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1489663985
+export SOURCE_DATE_EPOCH=1491685597
 rm -rf %{buildroot}
 %make_install
 
@@ -172,6 +173,7 @@ rm -rf %{buildroot}
 /usr/bin/X
 /usr/bin/Xnest
 /usr/bin/Xvfb
+/usr/bin/Xwayland
 /usr/bin/cvt
 /usr/bin/gtf
 

@@ -12,3 +12,4 @@ libgcrypt-dev
 libxshmfence-dev
 graphviz
 wayland-dev
+wayland-protocols-dev
