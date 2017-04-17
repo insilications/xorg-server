@@ -6,7 +6,7 @@
 #
 Name     : xorg-server
 Version  : 1.19.3
-Release  : 36
+Release  : 37
 URL      : https://www.x.org/releases/individual/xserver/xorg-server-1.19.3.tar.gz
 Source0  : https://www.x.org/releases/individual/xserver/xorg-server-1.19.3.tar.gz
 Source99 : https://www.x.org/releases/individual/xserver/xorg-server-1.19.3.tar.gz.sig
