@@ -6,18 +6,24 @@
 #
 Name     : xorg-server
 Version  : 1.19.3
-Release  : 38
+Release  : 39
 URL      : https://www.x.org/releases/individual/xserver/xorg-server-1.19.3.tar.gz
 Source0  : https://www.x.org/releases/individual/xserver/xorg-server-1.19.3.tar.gz
 Source99 : https://www.x.org/releases/individual/xserver/xorg-server-1.19.3.tar.gz.sig
 Summary  : Modular X.Org X Server
 Group    : Development/Tools
-License  : MIT X11
+License  : MIT
 Requires: xorg-server-bin
 Requires: xorg-server-setuid
 Requires: xorg-server-lib
 Requires: xorg-server-data
 Requires: xorg-server-doc
+Requires: xf86-input-libinput
+Requires: xf86-video-amdgpu
+Requires: xf86-video-ati
+Requires: xf86-video-fbdev
+Requires: xf86-video-nouveau
+Requires: xf86-video-vesa
 BuildRequires : bison
 BuildRequires : dbus-dev
 BuildRequires : doxygen
@@ -147,8 +153,11 @@ setuid components for the xorg-server package.
 %patch3 -p1
 
 %build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1491685597
+export SOURCE_DATE_EPOCH=1494585400
 export CFLAGS="-O3 -g -fopt-info-vec "
 unset LDFLAGS
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
@@ -159,7 +168,7 @@ export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-semantic-interposition 
 make V=1  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1491685597
+export SOURCE_DATE_EPOCH=1494585400
 rm -rf %{buildroot}
 %make_install
 
