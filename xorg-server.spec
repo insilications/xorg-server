@@ -6,7 +6,7 @@
 #
 Name     : xorg-server
 Version  : 1.19.3
-Release  : 40
+Release  : 41
 URL      : https://www.x.org/releases/individual/xserver/xorg-server-1.19.3.tar.gz
 Source0  : https://www.x.org/releases/individual/xserver/xorg-server-1.19.3.tar.gz
 Source99 : https://www.x.org/releases/individual/xserver/xorg-server-1.19.3.tar.gz.sig
@@ -19,10 +19,7 @@ Requires: xorg-server-lib
 Requires: xorg-server-data
 Requires: xorg-server-doc
 Requires: xf86-input-libinput
-Requires: xf86-video-amdgpu
-Requires: xf86-video-ati
 Requires: xf86-video-fbdev
-Requires: xf86-video-nouveau
 Requires: xf86-video-vesa
 BuildRequires : bison
 BuildRequires : dbus-dev
@@ -81,9 +78,11 @@ BuildRequires : wayland-dev
 BuildRequires : wayland-protocols-dev
 BuildRequires : xmlto
 BuildRequires : xtrans-dev
-Patch1: 0001-sdksyms.sh-Make-sdksyms.sh-work-with-gcc5.patch
-Patch2: mmap-offset.patch
-Patch3: build.patch
+Patch1: cve-2017-10972.patch
+Patch2: cve-2017-10971.patch
+Patch3: 0001-sdksyms.sh-Make-sdksyms.sh-work-with-gcc5.patch
+Patch4: mmap-offset.patch
+Patch5: build.patch
 
 %description
 X Server
@@ -151,24 +150,26 @@ setuid components for the xorg-server package.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
+%patch5 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1494585400
+export SOURCE_DATE_EPOCH=1501519043
 export CFLAGS="-O3 -g -fopt-info-vec "
 unset LDFLAGS
-export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
-export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
-export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
-export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition -fstack-protector-strong "
+export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition -fstack-protector-strong "
+export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition -fstack-protector-strong "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-semantic-interposition -fstack-protector-strong "
 %reconfigure --disable-static --with-int10=x86emu --enable-config-udev --enable-config-udev-kms  --enable-dri2 --enable-dri --enable-dri3 --enable-dbe --enable-record --enable-systemd-logind --enable-glamor --enable-xwayland
 make V=1  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1494585400
+export SOURCE_DATE_EPOCH=1501519043
 rm -rf %{buildroot}
 %make_install
 

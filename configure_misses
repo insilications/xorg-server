@@ -1,0 +1,46 @@
+Configure miss: dtrace
+Configure miss: getpeereid
+Configure miss: getpeerucred
+Configure miss: getprogname
+Configure miss: getzoneid
+Configure miss: shmctl64
+Configure miss: walkcontext
+Configure miss: reallocarray
+Configure miss: timingsafe_memcmp
+Configure miss: arc4random_buf in -lbsd
+Configure miss: arc4random_buf
+Configure miss: ndbm.h usability
+Configure miss: ndbm.h presence
+Configure miss: ndbm.h
+Configure miss: dbm.h usability
+Configure miss: dbm.h presence
+Configure miss: dbm.h
+Configure miss: rpcsvc/dbm.h usability
+Configure miss: rpcsvc/dbm.h presence
+Configure miss: rpcsvc/dbm.h
+Configure miss: sys/agpio.h usability
+Configure miss: sys/agpio.h presence
+Configure miss: sys/agpio.h
+Configure miss: sys/agpgart.h usability
+Configure miss: sys/agpgart.h presence
+Configure miss: sys/agpgart.h
+Configure miss: sys/linker.h
+Configure miss: machine/apmvar.h usability
+Configure miss: machine/apmvar.h presence
+Configure miss: machine/apmvar.h
+Configure miss: to see if we can install the Xorg server as root
+Configure miss: if Xtrans should support os-specific local connections
+Configure miss: authdes_seccreate
+Configure miss: if compiler needs -Werror to reject unknown flags
+Configure miss: pthread_setname_np(const char*)
+Configure miss: hal
+Configure miss: SHA1Init
+Configure miss: CC_SHA1_Init
+Configure miss: wincrypt.h
+Configure miss: SHA1Init in -lmd
+Configure miss: libsha1
+Configure miss: if SVR4 needs to be defined
+Configure miss: whether to build XWin DDX
+Configure miss: dependency style of $(CC)
+Configure miss: xmuu xext >= 1.0.99.4 x11 >= 1.6 xrender xfixes xi >= 1.2.99.1 dmxproto >= 2.2.99.1 xau xdmcp
+Configure miss: whether to build Xdmx DDX
