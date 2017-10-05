@@ -5,7 +5,6 @@ Configure miss: getprogname
 Configure miss: getzoneid
 Configure miss: shmctl64
 Configure miss: walkcontext
-Configure miss: reallocarray
 Configure miss: timingsafe_memcmp
 Configure miss: arc4random_buf in -lbsd
 Configure miss: arc4random_buf

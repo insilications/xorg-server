@@ -1,5 +1,5 @@
-cve-2017-10972.patch
-cve-2017-10971.patch
+#cve-2017-10972.patch
+#cve-2017-10971.patch
 0001-sdksyms.sh-Make-sdksyms.sh-work-with-gcc5.patch
 mmap-offset.patch
 build.patch
