@@ -1,13 +1,9 @@
 Configure miss: dtrace
-Configure miss: getpeereid
-Configure miss: getpeerucred
-Configure miss: getprogname
 Configure miss: getzoneid
 Configure miss: shmctl64
 Configure miss: walkcontext
 Configure miss: timingsafe_memcmp
 Configure miss: arc4random_buf in -lbsd
-Configure miss: arc4random_buf
 Configure miss: ndbm.h usability
 Configure miss: ndbm.h presence
 Configure miss: ndbm.h
@@ -30,7 +26,6 @@ Configure miss: machine/apmvar.h
 Configure miss: to see if we can install the Xorg server as root
 Configure miss: if Xtrans should support os-specific local connections
 Configure miss: authdes_seccreate
-Configure miss: if compiler needs -Werror to reject unknown flags
 Configure miss: pthread_setname_np(const char*)
 Configure miss: hal
 Configure miss: SHA1Init

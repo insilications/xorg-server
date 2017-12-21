@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x4C09DD83CAAA50B2 (ajax@nwnk.net)
 #
 Name     : xorg-server
-Version  : 1.19.5
-Release  : 44
-URL      : https://www.x.org/releases/individual/xserver/xorg-server-1.19.5.tar.gz
-Source0  : https://www.x.org/releases/individual/xserver/xorg-server-1.19.5.tar.gz
-Source99 : https://www.x.org/releases/individual/xserver/xorg-server-1.19.5.tar.gz.sig
+Version  : 1.19.6
+Release  : 45
+URL      : https://www.x.org/releases/individual/xserver/xorg-server-1.19.6.tar.gz
+Source0  : https://www.x.org/releases/individual/xserver/xorg-server-1.19.6.tar.gz
+Source99 : https://www.x.org/releases/individual/xserver/xorg-server-1.19.6.tar.gz.sig
 Summary  : Modular X.Org X Server
 Group    : Development/Tools
 License  : MIT
@@ -147,7 +147,7 @@ setuid components for the xorg-server package.
 
 
 %prep
-%setup -q -n xorg-server-1.19.5
+%setup -q -n xorg-server-1.19.6
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
@@ -157,7 +157,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1507835349
+export SOURCE_DATE_EPOCH=1513820933
 export CFLAGS="-O3 -g -fopt-info-vec "
 unset LDFLAGS
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
@@ -165,10 +165,10 @@ export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-i
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
 export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
 %reconfigure --disable-static --with-int10=x86emu --enable-config-udev --enable-config-udev-kms  --enable-dri2 --enable-dri --enable-dri3 --enable-dbe --enable-record --enable-systemd-logind --enable-glamor --enable-xwayland
-make V=1  %{?_smp_mflags}
+make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1507835349
+export SOURCE_DATE_EPOCH=1513820933
 rm -rf %{buildroot}
 %make_install
 
