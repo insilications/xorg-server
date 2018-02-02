@@ -6,7 +6,7 @@
 #
 Name     : xorg-server
 Version  : 1.19.6
-Release  : 45
+Release  : 46
 URL      : https://www.x.org/releases/individual/xserver/xorg-server-1.19.6.tar.gz
 Source0  : https://www.x.org/releases/individual/xserver/xorg-server-1.19.6.tar.gz
 Source99 : https://www.x.org/releases/individual/xserver/xorg-server-1.19.6.tar.gz.sig
