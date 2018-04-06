@@ -6,7 +6,7 @@
 #
 Name     : xorg-server
 Version  : 1.19.6
-Release  : 46
+Release  : 47
 URL      : https://www.x.org/releases/individual/xserver/xorg-server-1.19.6.tar.gz
 Source0  : https://www.x.org/releases/individual/xserver/xorg-server-1.19.6.tar.gz
 Source99 : https://www.x.org/releases/individual/xserver/xorg-server-1.19.6.tar.gz.sig
@@ -81,6 +81,9 @@ BuildRequires : wayland-dev
 BuildRequires : wayland-protocols-dev
 BuildRequires : xmlto
 BuildRequires : xtrans-dev
+# Suppress stripping binaries
+%define __strip /bin/true
+%define debug_package %{nil}
 Patch1: 0001-sdksyms.sh-Make-sdksyms.sh-work-with-gcc5.patch
 Patch2: mmap-offset.patch
 Patch3: build.patch
@@ -157,18 +160,18 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1513820933
+export SOURCE_DATE_EPOCH=1523028443
 export CFLAGS="-O3 -g -fopt-info-vec "
 unset LDFLAGS
-export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
-export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
-export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
-export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs "
+export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs "
+export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs "
 %reconfigure --disable-static --with-int10=x86emu --enable-config-udev --enable-config-udev-kms  --enable-dri2 --enable-dri --enable-dri3 --enable-dbe --enable-record --enable-systemd-logind --enable-glamor --enable-xwayland
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1513820933
+export SOURCE_DATE_EPOCH=1523028443
 rm -rf %{buildroot}
 %make_install
 
