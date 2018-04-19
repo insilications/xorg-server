@@ -1,0 +1,3 @@
+mkdir %{buildroot}/usr/bin/haswell
+ln -s ../Xwayland  %{buildroot}/usr/bin/haswell/Xwayland
+ln -s ../Xorg  %{buildroot}/usr/bin/haswell/Xorg
