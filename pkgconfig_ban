@@ -12,3 +12,4 @@ windowsdriproto
 xcb-ewmh
 xcb-icccm
 xcb-image
+wayland-eglstream-protocols

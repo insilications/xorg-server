@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x4C09DD83CAAA50B2 (ajax@nwnk.net)
 #
 Name     : xorg-server
-Version  : 1.19.6
-Release  : 52
-URL      : https://www.x.org/releases/individual/xserver/xorg-server-1.19.6.tar.gz
-Source0  : https://www.x.org/releases/individual/xserver/xorg-server-1.19.6.tar.gz
-Source99 : https://www.x.org/releases/individual/xserver/xorg-server-1.19.6.tar.gz.sig
+Version  : 1.20.0
+Release  : 53
+URL      : https://www.x.org/releases/individual/xserver/xorg-server-1.20.0.tar.gz
+Source0  : https://www.x.org/releases/individual/xserver/xorg-server-1.20.0.tar.gz
+Source99 : https://www.x.org/releases/individual/xserver/xorg-server-1.20.0.tar.gz.sig
 Summary  : Modular X.Org X Server
 Group    : Development/Tools
 License  : MIT
@@ -35,48 +35,40 @@ BuildRequires : libdmx-dev
 BuildRequires : libgcrypt-dev
 BuildRequires : libxshmfence-dev
 BuildRequires : libxslt-bin
+BuildRequires : meson
 BuildRequires : nettle-dev
-BuildRequires : pkgconfig(bigreqsproto)
-BuildRequires : pkgconfig(compositeproto)
+BuildRequires : ninja
 BuildRequires : pkgconfig(dri2proto)
 BuildRequires : pkgconfig(dri3proto)
 BuildRequires : pkgconfig(epoxy)
+BuildRequires : pkgconfig(gbm)
 BuildRequires : pkgconfig(gl)
 BuildRequires : pkgconfig(glproto)
 BuildRequires : pkgconfig(ice)
-BuildRequires : pkgconfig(inputproto)
-BuildRequires : pkgconfig(libdrm)
 BuildRequires : pkgconfig(libunwind)
 BuildRequires : pkgconfig(openssl)
 BuildRequires : pkgconfig(pciaccess)
 BuildRequires : pkgconfig(pixman-1)
-BuildRequires : pkgconfig(presentproto)
-BuildRequires : pkgconfig(randrproto)
-BuildRequires : pkgconfig(recordproto)
-BuildRequires : pkgconfig(renderproto)
-BuildRequires : pkgconfig(resourceproto)
-BuildRequires : pkgconfig(scrnsaverproto)
 BuildRequires : pkgconfig(sm)
 BuildRequires : pkgconfig(udev)
-BuildRequires : pkgconfig(videoproto)
+BuildRequires : pkgconfig(wayland-scanner)
 BuildRequires : pkgconfig(x11)
 BuildRequires : pkgconfig(x11-xcb)
 BuildRequires : pkgconfig(xau)
 BuildRequires : pkgconfig(xcb-aux)
 BuildRequires : pkgconfig(xcb-keysyms)
-BuildRequires : pkgconfig(xcmiscproto)
 BuildRequires : pkgconfig(xdmcp)
 BuildRequires : pkgconfig(xf86dgaproto)
-BuildRequires : pkgconfig(xf86driproto)
 BuildRequires : pkgconfig(xfixes)
 BuildRequires : pkgconfig(xfont)
 BuildRequires : pkgconfig(xfont2)
-BuildRequires : pkgconfig(xineramaproto)
+BuildRequires : pkgconfig(xkbcomp)
 BuildRequires : pkgconfig(xkbfile)
 BuildRequires : pkgconfig(xmu)
 BuildRequires : pkgconfig(xorg-macros)
 BuildRequires : pkgconfig(xres)
 BuildRequires : pkgconfig(xshmfence)
+BuildRequires : python3
 BuildRequires : wayland-dev
 BuildRequires : wayland-protocols-dev
 BuildRequires : xmlto
@@ -150,7 +142,7 @@ setuid components for the xorg-server package.
 
 
 %prep
-%setup -q -n xorg-server-1.19.6
+%setup -q -n xorg-server-1.20.0
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
@@ -160,7 +152,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1526025638
+export SOURCE_DATE_EPOCH=1526133935
 export CFLAGS="-O3 -g -fopt-info-vec "
 unset LDFLAGS
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -171,7 +163,7 @@ export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semanti
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1526025638
+export SOURCE_DATE_EPOCH=1526133935
 rm -rf %{buildroot}
 %make_install
 
@@ -247,6 +239,7 @@ rm -rf %{buildroot}
 /usr/include/xorg/glamor.h
 /usr/include/xorg/globals.h
 /usr/include/xorg/glx_extinit.h
+/usr/include/xorg/glxvndabi.h
 /usr/include/xorg/glyphstr.h
 /usr/include/xorg/hotplug.h
 /usr/include/xorg/i2c_def.h
@@ -307,6 +300,7 @@ rm -rf %{buildroot}
 /usr/include/xorg/vbe.h
 /usr/include/xorg/vbeModes.h
 /usr/include/xorg/vgaHW.h
+/usr/include/xorg/vndserver.h
 /usr/include/xorg/wfbrename.h
 /usr/include/xorg/window.h
 /usr/include/xorg/windowstr.h
@@ -317,6 +311,7 @@ rm -rf %{buildroot}
 /usr/include/xorg/xf86Crtc.h
 /usr/include/xorg/xf86Cursor.h
 /usr/include/xorg/xf86DDC.h
+/usr/include/xorg/xf86MatchDrivers.h
 /usr/include/xorg/xf86Modes.h
 /usr/include/xorg/xf86Module.h
 /usr/include/xorg/xf86Opt.h

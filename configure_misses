@@ -4,15 +4,6 @@ Configure miss: shmctl64
 Configure miss: walkcontext
 Configure miss: timingsafe_memcmp
 Configure miss: arc4random_buf in -lbsd
-Configure miss: ndbm.h usability
-Configure miss: ndbm.h presence
-Configure miss: ndbm.h
-Configure miss: dbm.h usability
-Configure miss: dbm.h presence
-Configure miss: dbm.h
-Configure miss: rpcsvc/dbm.h usability
-Configure miss: rpcsvc/dbm.h presence
-Configure miss: rpcsvc/dbm.h
 Configure miss: sys/agpio.h usability
 Configure miss: sys/agpio.h presence
 Configure miss: sys/agpio.h
@@ -38,3 +29,4 @@ Configure miss: whether to build XWin DDX
 Configure miss: dependency style of $(CC)
 Configure miss: xmuu xext >= 1.0.99.4 x11 >= 1.6 xrender xfixes xi >= 1.2.99.1 dmxproto >= 2.2.99.1 xau xdmcp
 Configure miss: whether to build Xdmx DDX
+Configure miss: wayland-eglstream-protocols >= 1.0.2
