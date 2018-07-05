@@ -1,0 +1,9 @@
+1.20.0
+libxslt-bin
+pkgconfig(xkbcomp)
+xmlto
+pkgconfig(xkbfile)
+flex
+doxygen
+pkgconfig(xfont2)
+bison

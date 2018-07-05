@@ -6,7 +6,7 @@
 #
 Name     : xorg-server
 Version  : 1.20.0
-Release  : 54
+Release  : 55
 URL      : https://www.x.org/releases/individual/xserver/xorg-server-1.20.0.tar.gz
 Source0  : https://www.x.org/releases/individual/xserver/xorg-server-1.20.0.tar.gz
 Source99 : https://www.x.org/releases/individual/xserver/xorg-server-1.20.0.tar.gz.sig
@@ -17,7 +17,8 @@ Requires: xorg-server-bin
 Requires: xorg-server-setuid
 Requires: xorg-server-lib
 Requires: xorg-server-data
-Requires: xorg-server-doc
+Requires: xorg-server-license
+Requires: xorg-server-man
 Requires: xf86-input-libinput
 Requires: xf86-video-amdgpu
 Requires: xf86-video-ati
@@ -91,6 +92,8 @@ Summary: bin components for the xorg-server package.
 Group: Binaries
 Requires: xorg-server-data
 Requires: xorg-server-setuid
+Requires: xorg-server-license
+Requires: xorg-server-man
 
 %description bin
 bin components for the xorg-server package.
@@ -116,21 +119,30 @@ Provides: xorg-server-devel
 dev components for the xorg-server package.
 
 
-%package doc
-Summary: doc components for the xorg-server package.
-Group: Documentation
-
-%description doc
-doc components for the xorg-server package.
-
-
 %package lib
 Summary: lib components for the xorg-server package.
 Group: Libraries
 Requires: xorg-server-data
+Requires: xorg-server-license
 
 %description lib
 lib components for the xorg-server package.
+
+
+%package license
+Summary: license components for the xorg-server package.
+Group: Default
+
+%description license
+license components for the xorg-server package.
+
+
+%package man
+Summary: man components for the xorg-server package.
+Group: Default
+
+%description man
+man components for the xorg-server package.
 
 
 %package setuid
@@ -152,7 +164,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1526133935
+export SOURCE_DATE_EPOCH=1530817408
 export CFLAGS="-O3 -g -fopt-info-vec "
 unset LDFLAGS
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -163,8 +175,10 @@ export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semanti
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1526133935
+export SOURCE_DATE_EPOCH=1530817408
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/doc/xorg-server
+cp COPYING %{buildroot}/usr/share/doc/xorg-server/COPYING
 %make_install
 
 %files
@@ -352,12 +366,6 @@ rm -rf %{buildroot}
 /usr/lib64/pkgconfig/xorg-server.pc
 /usr/share/aclocal/*.m4
 
-%files doc
-%defattr(-,root,root,-)
-%doc /usr/share/man/man1/*
-%doc /usr/share/man/man4/*
-%doc /usr/share/man/man5/*
-
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/xorg/modules/drivers/modesetting_drv.so
@@ -372,6 +380,24 @@ rm -rf %{buildroot}
 /usr/lib64/xorg/modules/libvbe.so
 /usr/lib64/xorg/modules/libvgahw.so
 /usr/lib64/xorg/modules/libwfb.so
+
+%files license
+%defattr(-,root,root,-)
+/usr/share/doc/xorg-server/COPYING
+
+%files man
+%defattr(-,root,root,-)
+/usr/share/man/man1/Xnest.1
+/usr/share/man/man1/Xorg.1
+/usr/share/man/man1/Xserver.1
+/usr/share/man/man1/Xvfb.1
+/usr/share/man/man1/cvt.1
+/usr/share/man/man1/gtf.1
+/usr/share/man/man4/exa.4
+/usr/share/man/man4/fbdevhw.4
+/usr/share/man/man4/modesetting.4
+/usr/share/man/man5/xorg.conf.5
+/usr/share/man/man5/xorg.conf.d.5
 
 %files setuid
 %defattr(-,root,root,-)
