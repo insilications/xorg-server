@@ -6,7 +6,7 @@
 #
 Name     : xorg-server
 Version  : 1.20.0
-Release  : 57
+Release  : 58
 URL      : https://www.x.org/releases/individual/xserver/xorg-server-1.20.0.tar.gz
 Source0  : https://www.x.org/releases/individual/xserver/xorg-server-1.20.0.tar.gz
 Source99 : https://www.x.org/releases/individual/xserver/xorg-server-1.20.0.tar.gz.sig
@@ -26,6 +26,7 @@ Requires: xf86-video-fbdev
 Requires: xf86-video-nouveau
 Requires: xf86-video-vesa
 BuildRequires : bison
+BuildRequires : buildreq-meson
 BuildRequires : dbus-dev
 BuildRequires : doxygen
 BuildRequires : flex
@@ -36,9 +37,7 @@ BuildRequires : libdmx-dev
 BuildRequires : libgcrypt-dev
 BuildRequires : libxshmfence-dev
 BuildRequires : libxslt-bin
-BuildRequires : meson
 BuildRequires : nettle-dev
-BuildRequires : ninja
 BuildRequires : pkgconfig(dri2proto)
 BuildRequires : pkgconfig(dri3proto)
 BuildRequires : pkgconfig(epoxy)
@@ -69,7 +68,6 @@ BuildRequires : pkgconfig(xmu)
 BuildRequires : pkgconfig(xorg-macros)
 BuildRequires : pkgconfig(xres)
 BuildRequires : pkgconfig(xshmfence)
-BuildRequires : python3
 BuildRequires : wayland-dev
 BuildRequires : wayland-protocols-dev
 BuildRequires : xmlto
@@ -80,6 +78,8 @@ BuildRequires : xtrans-dev
 Patch1: 0001-sdksyms.sh-Make-sdksyms.sh-work-with-gcc5.patch
 Patch2: mmap-offset.patch
 Patch3: build.patch
+Patch4: 0001-glamor-always-return-0-from-glamor-fds-from.patch
+Patch5: 0002-glamor-propagate-glamor-fds-from.patch
 
 %description
 X Server
@@ -158,13 +158,15 @@ setuid components for the xorg-server package.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
+%patch5 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1530817408
+export SOURCE_DATE_EPOCH=1532531542
 export CFLAGS="-O3 -g -fopt-info-vec "
 unset LDFLAGS
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -175,7 +177,7 @@ export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semanti
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1530817408
+export SOURCE_DATE_EPOCH=1532531542
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/xorg-server
 cp COPYING %{buildroot}/usr/share/doc/xorg-server/COPYING
