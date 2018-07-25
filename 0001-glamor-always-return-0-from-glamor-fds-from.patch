@@ -1,0 +1,46 @@
+From 3da999a0390407d512bf784e4faf01482bfff9ea Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Michel=20D=C3=A4nzer?= <michel.daenzer@amd.com>
+Date: Wed, 23 May 2018 11:38:13 +0200
+Subject: glamor: Always return 0 from glamor_fds_from_pixmap on error
+
+This matches what glamor_egl_fds_from_pixmap and dri3_fds_from_pixmap do
+and what proc_dri3_buffers_from_pixmap expects.
+
+Fixes: c8c276c9569b "glamor: Implement PixmapFromBuffers and
+                     BuffersFromPixmap"
+Reviewed-by: Emil Velikov <emil.l.velikov@gmail.com>
+---
+ glamor/glamor.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/glamor/glamor.c b/glamor/glamor.c
+index d984d20..e2c74d1 100644
+--- a/glamor/glamor.c
++++ b/glamor/glamor.c
+@@ -836,20 +836,20 @@ glamor_fds_from_pixmap(ScreenPtr screen, PixmapPtr pixmap, int *fds,
+         glamor_get_screen_private(pixmap->drawable.pScreen);
+ 
+     if (!glamor_priv->dri3_enabled)
+-        return -1;
++        return 0;
+     switch (pixmap_priv->type) {
+     case GLAMOR_TEXTURE_DRM:
+     case GLAMOR_TEXTURE_ONLY:
+         if (!glamor_pixmap_ensure_fbo(pixmap, pixmap->drawable.depth == 30 ?
+                                       GL_RGB10_A2 : GL_RGBA, 0))
+-            return -1;
++            return 0;
+         return glamor_egl_fds_from_pixmap(screen, pixmap, fds,
+                                           strides, offsets,
+                                           modifier);
+     default:
+         break;
+     }
+-    return -1;
++    return 0;
+ }
+ 
+ _X_EXPORT int
+-- 
+cgit v1.1
+
