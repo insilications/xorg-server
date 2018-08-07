@@ -1,9 +1,9 @@
-1.20.0
-libxslt-bin
-pkgconfig(xkbcomp)
-xmlto
-pkgconfig(xkbfile)
-flex
-doxygen
+1.20.1
 pkgconfig(xfont2)
+libxslt-bin
+xmlto
+pkgconfig(xkbcomp)
 bison
+doxygen
+flex
+pkgconfig(xkbfile)

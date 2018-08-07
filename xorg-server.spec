@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x4C09DD83CAAA50B2 (ajax@nwnk.net)
 #
 Name     : xorg-server
-Version  : 1.20.0
-Release  : 58
-URL      : https://www.x.org/releases/individual/xserver/xorg-server-1.20.0.tar.gz
-Source0  : https://www.x.org/releases/individual/xserver/xorg-server-1.20.0.tar.gz
-Source99 : https://www.x.org/releases/individual/xserver/xorg-server-1.20.0.tar.gz.sig
+Version  : 1.20.1
+Release  : 59
+URL      : https://www.x.org/releases/individual/xserver/xorg-server-1.20.1.tar.gz
+Source0  : https://www.x.org/releases/individual/xserver/xorg-server-1.20.1.tar.gz
+Source99 : https://www.x.org/releases/individual/xserver/xorg-server-1.20.1.tar.gz.sig
 Summary  : Modular X.Org X Server
 Group    : Development/Tools
 License  : MIT
@@ -78,8 +78,6 @@ BuildRequires : xtrans-dev
 Patch1: 0001-sdksyms.sh-Make-sdksyms.sh-work-with-gcc5.patch
 Patch2: mmap-offset.patch
 Patch3: build.patch
-Patch4: 0001-glamor-always-return-0-from-glamor-fds-from.patch
-Patch5: 0002-glamor-propagate-glamor-fds-from.patch
 
 %description
 X Server
@@ -154,19 +152,17 @@ setuid components for the xorg-server package.
 
 
 %prep
-%setup -q -n xorg-server-1.20.0
+%setup -q -n xorg-server-1.20.1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
-%patch5 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1532531542
+export SOURCE_DATE_EPOCH=1533662847
 export CFLAGS="-O3 -g -fopt-info-vec "
 unset LDFLAGS
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -177,7 +173,7 @@ export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semanti
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1532531542
+export SOURCE_DATE_EPOCH=1533662847
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/xorg-server
 cp COPYING %{buildroot}/usr/share/doc/xorg-server/COPYING
