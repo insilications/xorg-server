@@ -6,7 +6,7 @@
 #
 Name     : xorg-server
 Version  : 1.20.1
-Release  : 59
+Release  : 60
 URL      : https://www.x.org/releases/individual/xserver/xorg-server-1.20.1.tar.gz
 Source0  : https://www.x.org/releases/individual/xserver/xorg-server-1.20.1.tar.gz
 Source99 : https://www.x.org/releases/individual/xserver/xorg-server-1.20.1.tar.gz.sig
