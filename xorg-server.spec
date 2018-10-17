@@ -5,20 +5,20 @@
 # Source0 file verified with key 0x4C09DD83CAAA50B2 (ajax@nwnk.net)
 #
 Name     : xorg-server
-Version  : 1.20.1
-Release  : 60
-URL      : https://www.x.org/releases/individual/xserver/xorg-server-1.20.1.tar.gz
-Source0  : https://www.x.org/releases/individual/xserver/xorg-server-1.20.1.tar.gz
-Source99 : https://www.x.org/releases/individual/xserver/xorg-server-1.20.1.tar.gz.sig
+Version  : 1.20.2
+Release  : 61
+URL      : https://www.x.org/releases/individual/xserver/xorg-server-1.20.2.tar.gz
+Source0  : https://www.x.org/releases/individual/xserver/xorg-server-1.20.2.tar.gz
+Source99 : https://www.x.org/releases/individual/xserver/xorg-server-1.20.2.tar.gz.sig
 Summary  : Modular X.Org X Server
 Group    : Development/Tools
 License  : MIT
-Requires: xorg-server-bin
-Requires: xorg-server-setuid
-Requires: xorg-server-lib
-Requires: xorg-server-data
-Requires: xorg-server-license
-Requires: xorg-server-man
+Requires: xorg-server-bin = %{version}-%{release}
+Requires: xorg-server-data = %{version}-%{release}
+Requires: xorg-server-lib = %{version}-%{release}
+Requires: xorg-server-license = %{version}-%{release}
+Requires: xorg-server-man = %{version}-%{release}
+Requires: xorg-server-setuid = %{version}-%{release}
 Requires: xf86-input-libinput
 Requires: xf86-video-amdgpu
 Requires: xf86-video-ati
@@ -88,10 +88,10 @@ can draw into.
 %package bin
 Summary: bin components for the xorg-server package.
 Group: Binaries
-Requires: xorg-server-data
-Requires: xorg-server-setuid
-Requires: xorg-server-license
-Requires: xorg-server-man
+Requires: xorg-server-data = %{version}-%{release}
+Requires: xorg-server-setuid = %{version}-%{release}
+Requires: xorg-server-license = %{version}-%{release}
+Requires: xorg-server-man = %{version}-%{release}
 
 %description bin
 bin components for the xorg-server package.
@@ -108,10 +108,10 @@ data components for the xorg-server package.
 %package dev
 Summary: dev components for the xorg-server package.
 Group: Development
-Requires: xorg-server-lib
-Requires: xorg-server-bin
-Requires: xorg-server-data
-Provides: xorg-server-devel
+Requires: xorg-server-lib = %{version}-%{release}
+Requires: xorg-server-bin = %{version}-%{release}
+Requires: xorg-server-data = %{version}-%{release}
+Provides: xorg-server-devel = %{version}-%{release}
 
 %description dev
 dev components for the xorg-server package.
@@ -120,8 +120,8 @@ dev components for the xorg-server package.
 %package lib
 Summary: lib components for the xorg-server package.
 Group: Libraries
-Requires: xorg-server-data
-Requires: xorg-server-license
+Requires: xorg-server-data = %{version}-%{release}
+Requires: xorg-server-license = %{version}-%{release}
 
 %description lib
 lib components for the xorg-server package.
@@ -152,7 +152,7 @@ setuid components for the xorg-server package.
 
 
 %prep
-%setup -q -n xorg-server-1.20.1
+%setup -q -n xorg-server-1.20.2
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
@@ -162,7 +162,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1533662847
+export SOURCE_DATE_EPOCH=1539773931
 export CFLAGS="-O3 -g -fopt-info-vec "
 unset LDFLAGS
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -173,10 +173,10 @@ export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semanti
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1533662847
+export SOURCE_DATE_EPOCH=1539773931
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/xorg-server
-cp COPYING %{buildroot}/usr/share/doc/xorg-server/COPYING
+mkdir -p %{buildroot}/usr/share/package-licenses/xorg-server
+cp COPYING %{buildroot}/usr/share/package-licenses/xorg-server/COPYING
 %make_install
 
 %files
@@ -380,11 +380,11 @@ cp COPYING %{buildroot}/usr/share/doc/xorg-server/COPYING
 /usr/lib64/xorg/modules/libwfb.so
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/xorg-server/COPYING
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/xorg-server/COPYING
 
 %files man
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 /usr/share/man/man1/Xnest.1
 /usr/share/man/man1/Xorg.1
 /usr/share/man/man1/Xserver.1
