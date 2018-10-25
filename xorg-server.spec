@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x4C09DD83CAAA50B2 (ajax@nwnk.net)
 #
 Name     : xorg-server
-Version  : 1.20.2
-Release  : 61
-URL      : https://www.x.org/releases/individual/xserver/xorg-server-1.20.2.tar.gz
-Source0  : https://www.x.org/releases/individual/xserver/xorg-server-1.20.2.tar.gz
-Source99 : https://www.x.org/releases/individual/xserver/xorg-server-1.20.2.tar.gz.sig
+Version  : 1.20.3
+Release  : 62
+URL      : https://www.x.org/releases/individual/xserver/xorg-server-1.20.3.tar.gz
+Source0  : https://www.x.org/releases/individual/xserver/xorg-server-1.20.3.tar.gz
+Source99 : https://www.x.org/releases/individual/xserver/xorg-server-1.20.3.tar.gz.sig
 Summary  : Modular X.Org X Server
 Group    : Development/Tools
 License  : MIT
@@ -152,7 +152,7 @@ setuid components for the xorg-server package.
 
 
 %prep
-%setup -q -n xorg-server-1.20.2
+%setup -q -n xorg-server-1.20.3
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
@@ -162,7 +162,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1539773931
+export SOURCE_DATE_EPOCH=1540480999
 export CFLAGS="-O3 -g -fopt-info-vec "
 unset LDFLAGS
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -173,7 +173,7 @@ export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semanti
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1539773931
+export SOURCE_DATE_EPOCH=1540480999
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/xorg-server
 cp COPYING %{buildroot}/usr/share/package-licenses/xorg-server/COPYING
