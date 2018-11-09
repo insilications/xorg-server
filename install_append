@@ -1,0 +1,2 @@
+mkdir -p %{buildroot}/usr/share/defaults/etc/X11/xorg.conf.d/
+cp 00-keyboard.conf %{buildroot}/usr/share/defaults/etc/X11/xorg.conf.d/

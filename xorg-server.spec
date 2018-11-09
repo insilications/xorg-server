@@ -6,7 +6,7 @@
 #
 Name     : xorg-server
 Version  : 1.20.3
-Release  : 62
+Release  : 63
 URL      : https://www.x.org/releases/individual/xserver/xorg-server-1.20.3.tar.gz
 Source0  : https://www.x.org/releases/individual/xserver/xorg-server-1.20.3.tar.gz
 Source99 : https://www.x.org/releases/individual/xserver/xorg-server-1.20.3.tar.gz.sig
@@ -78,6 +78,7 @@ BuildRequires : xtrans-dev
 Patch1: 0001-sdksyms.sh-Make-sdksyms.sh-work-with-gcc5.patch
 Patch2: mmap-offset.patch
 Patch3: build.patch
+Patch4: 0001-add-default-keyboard-setup-for-xorg.patch
 
 %description
 X Server
@@ -156,13 +157,14 @@ setuid components for the xorg-server package.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1540480999
+export SOURCE_DATE_EPOCH=1541799739
 export CFLAGS="-O3 -g -fopt-info-vec "
 unset LDFLAGS
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -173,11 +175,15 @@ export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semanti
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1540480999
+export SOURCE_DATE_EPOCH=1541799739
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/xorg-server
 cp COPYING %{buildroot}/usr/share/package-licenses/xorg-server/COPYING
 %make_install
+## install_append content
+mkdir -p %{buildroot}/usr/share/defaults/etc/X11/xorg.conf.d/
+cp 00-keyboard.conf %{buildroot}/usr/share/defaults/etc/X11/xorg.conf.d/
+## install_append end
 
 %files
 %defattr(-,root,root,-)
@@ -197,6 +203,7 @@ cp COPYING %{buildroot}/usr/share/package-licenses/xorg-server/COPYING
 %defattr(-,root,root,-)
 /usr/share/X11/xkb/compiled/README.compiled
 /usr/share/X11/xorg.conf.d/10-quirks.conf
+/usr/share/defaults/etc/X11/xorg.conf.d/00-keyboard.conf
 
 %files dev
 %defattr(-,root,root,-)
