@@ -1,8 +1,4 @@
-#cve-2017-10972.patch
-#cve-2017-10971.patch
 0001-sdksyms.sh-Make-sdksyms.sh-work-with-gcc5.patch
 mmap-offset.patch
 build.patch
-#0001-glamor-always-return-0-from-glamor-fds-from.patch
-#0002-glamor-propagate-glamor-fds-from.patch
 0001-add-default-keyboard-setup-for-xorg.patch
