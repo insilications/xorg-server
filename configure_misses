@@ -27,6 +27,6 @@ Configure miss: libsha1
 Configure miss: if SVR4 needs to be defined
 Configure miss: whether to build XWin DDX
 Configure miss: dependency style of $(CC)
-Configure miss: xmuu xext >= 1.0.99.4 x11 >= 1.6 xrender xfixes xi >= 1.2.99.1 dmxproto >= 2.2.99.1 xau xdmcp
+Configure miss: xaw7 xmu xt xpm x11
 Configure miss: whether to build Xdmx DDX
 Configure miss: wayland-eglstream-protocols >= 1.0.2

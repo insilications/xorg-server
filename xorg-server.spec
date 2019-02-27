@@ -5,12 +5,12 @@
 # Source0 file verified with key 0x4C09DD83CAAA50B2 (ajax@nwnk.net)
 #
 Name     : xorg-server
-Version  : 1.20.3
-Release  : 67
-URL      : https://www.x.org/releases/individual/xserver/xorg-server-1.20.3.tar.gz
-Source0  : https://www.x.org/releases/individual/xserver/xorg-server-1.20.3.tar.gz
-Source99 : https://www.x.org/releases/individual/xserver/xorg-server-1.20.3.tar.gz.sig
-Summary  : Modular X.Org X Server
+Version  : 1.20.4
+Release  : 68
+URL      : https://www.x.org/releases/individual/xserver/xorg-server-1.20.4.tar.gz
+Source0  : https://www.x.org/releases/individual/xserver/xorg-server-1.20.4.tar.gz
+Source99 : https://www.x.org/releases/individual/xserver/xorg-server-1.20.4.tar.gz.sig
+Summary  : Xorg X server
 Group    : Development/Tools
 License  : MIT
 Requires: xorg-server-bin = %{version}-%{release}
@@ -81,10 +81,12 @@ Patch3: build.patch
 Patch4: 0001-add-default-keyboard-setup-for-xorg.patch
 
 %description
-X Server
-The X server accepts requests from client applications to create windows,
-which are (normally rectangular) "virtual screens" that the client program
-can draw into.
+This is a submodule to access linux framebuffer devices.
+It is supported to work as helper module (like vgahw)
+for the chipset drivers.  There are functions for
+saving/restoring/setting video modes, set palette entries,
+and a few more helper functions.  Some of them can be
+hooked directly into ScrnInfoRec.
 
 %package bin
 Summary: bin components for the xorg-server package.
@@ -92,7 +94,6 @@ Group: Binaries
 Requires: xorg-server-data = %{version}-%{release}
 Requires: xorg-server-setuid = %{version}-%{release}
 Requires: xorg-server-license = %{version}-%{release}
-Requires: xorg-server-man = %{version}-%{release}
 
 %description bin
 bin components for the xorg-server package.
@@ -112,7 +113,9 @@ Group: Development
 Requires: xorg-server-lib = %{version}-%{release}
 Requires: xorg-server-bin = %{version}-%{release}
 Requires: xorg-server-data = %{version}-%{release}
+Requires: xorg-server-man = %{version}-%{release}
 Provides: xorg-server-devel = %{version}-%{release}
+Requires: xorg-server = %{version}-%{release}
 
 %description dev
 dev components for the xorg-server package.
@@ -153,7 +156,7 @@ setuid components for the xorg-server package.
 
 
 %prep
-%setup -q -n xorg-server-1.20.3
+%setup -q -n xorg-server-1.20.4
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
@@ -164,7 +167,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1542435006
+export SOURCE_DATE_EPOCH=1551301259
 export CFLAGS="-O3 -g -fopt-info-vec "
 unset LDFLAGS
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -175,7 +178,7 @@ export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semanti
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1542435006
+export SOURCE_DATE_EPOCH=1551301259
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/xorg-server
 cp COPYING %{buildroot}/usr/share/package-licenses/xorg-server/COPYING
