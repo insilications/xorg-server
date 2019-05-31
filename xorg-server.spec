@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x4C09DD83CAAA50B2 (ajax@nwnk.net)
 #
 Name     : xorg-server
-Version  : 1.20.4
-Release  : 77
-URL      : https://www.x.org/releases/individual/xserver/xorg-server-1.20.4.tar.gz
-Source0  : https://www.x.org/releases/individual/xserver/xorg-server-1.20.4.tar.gz
-Source99 : https://www.x.org/releases/individual/xserver/xorg-server-1.20.4.tar.gz.sig
+Version  : 1.20.5
+Release  : 78
+URL      : https://www.x.org/releases/individual/xserver/xorg-server-1.20.5.tar.gz
+Source0  : https://www.x.org/releases/individual/xserver/xorg-server-1.20.5.tar.gz
+Source99 : https://www.x.org/releases/individual/xserver/xorg-server-1.20.5.tar.gz.sig
 Summary  : Xorg X server
 Group    : Development/Tools
 License  : MIT
@@ -70,6 +70,12 @@ BuildRequires : pkgconfig(xres)
 BuildRequires : pkgconfig(xshmfence)
 BuildRequires : wayland-dev
 BuildRequires : wayland-protocols-dev
+BuildRequires : xf86-input-libinput
+BuildRequires : xf86-video-amdgpu
+BuildRequires : xf86-video-ati
+BuildRequires : xf86-video-fbdev
+BuildRequires : xf86-video-nouveau
+BuildRequires : xf86-video-vesa
 BuildRequires : xmlto
 BuildRequires : xtrans-dev
 # Suppress stripping binaries
@@ -115,6 +121,7 @@ Requires: xorg-server-bin = %{version}-%{release}
 Requires: xorg-server-data = %{version}-%{release}
 Provides: xorg-server-devel = %{version}-%{release}
 Requires: xorg-server = %{version}-%{release}
+Requires: xorg-server = %{version}-%{release}
 
 %description dev
 dev components for the xorg-server package.
@@ -155,7 +162,7 @@ setuid components for the xorg-server package.
 
 
 %prep
-%setup -q -n xorg-server-1.20.4
+%setup -q -n xorg-server-1.20.5
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
@@ -166,18 +173,18 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1553871275
+export SOURCE_DATE_EPOCH=1559328422
 export CFLAGS="-O3 -g -fopt-info-vec "
 unset LDFLAGS
-export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
-export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fcf-protection=full -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
+export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fcf-protection=full -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
+export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fcf-protection=full -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fcf-protection=full -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
 %reconfigure --disable-static --with-int10=x86emu --enable-config-udev --enable-config-udev-kms  --enable-dri2 --enable-dri --enable-dri3 --enable-dbe --enable-record --enable-systemd-logind --enable-glamor --enable-xwayland
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1553871275
+export SOURCE_DATE_EPOCH=1559328422
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/xorg-server
 cp COPYING %{buildroot}/usr/share/package-licenses/xorg-server/COPYING
