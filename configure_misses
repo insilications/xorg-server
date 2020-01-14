@@ -1,7 +1,11 @@
 Configure miss: dtrace
+Configure miss: stropts.h usability
+Configure miss: stropts.h presence
+Configure miss: stropts.h
 Configure miss: getzoneid
 Configure miss: shmctl64
 Configure miss: walkcontext
+Configure miss: isastream
 Configure miss: timingsafe_memcmp
 Configure miss: arc4random_buf in -lbsd
 Configure miss: sys/agpio.h usability
