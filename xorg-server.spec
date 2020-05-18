@@ -6,11 +6,11 @@
 #
 Name     : xorg-server
 Version  : 1.20.7
-Release  : 85
+Release  : 86
 URL      : https://www.x.org/releases/individual/xserver/xorg-server-1.20.7.tar.gz
 Source0  : https://www.x.org/releases/individual/xserver/xorg-server-1.20.7.tar.gz
 Source1  : https://www.x.org/releases/individual/xserver/xorg-server-1.20.7.tar.gz.sig
-Summary  : Xorg X server
+Summary  : Modular X.Org X Server
 Group    : Development/Tools
 License  : MIT
 Requires: xorg-server-bin = %{version}-%{release}
@@ -85,14 +85,15 @@ Patch1: 0001-sdksyms.sh-Make-sdksyms.sh-work-with-gcc5.patch
 Patch2: mmap-offset.patch
 Patch3: build.patch
 Patch4: 0001-add-default-keyboard-setup-for-xorg.patch
+Patch5: backport-gcc10.patch
 
 %description
-This is a submodule to access linux framebuffer devices.
-It is supported to work as helper module (like vgahw)
-for the chipset drivers.  There are functions for
-saving/restoring/setting video modes, set palette entries,
-and a few more helper functions.  Some of them can be
-hooked directly into ScrnInfoRec.
+=============
+What Is It ?
+============
+Xephyr is a a kdrive server that outputs to a window on a pre-existing
+'host' X display. Think Xnest but with support for modern extensions
+like composite, damage and randr.
 
 %package bin
 Summary: bin components for the xorg-server package.
@@ -120,7 +121,6 @@ Requires: xorg-server-lib = %{version}-%{release}
 Requires: xorg-server-bin = %{version}-%{release}
 Requires: xorg-server-data = %{version}-%{release}
 Provides: xorg-server-devel = %{version}-%{release}
-Requires: xorg-server = %{version}-%{release}
 Requires: xorg-server = %{version}-%{release}
 
 %description dev
@@ -168,26 +168,26 @@ cd %{_builddir}/xorg-server-1.20.7
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1579019597
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1589808506
 export GCC_IGNORE_WERROR=1
 export CFLAGS="-O3 -g -fopt-info-vec "
 unset LDFLAGS
-export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fcf-protection=full -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
-export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fcf-protection=full -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
-export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fcf-protection=full -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
-export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fcf-protection=full -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$FFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$FFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
 %reconfigure --disable-static --with-int10=x86emu --enable-config-udev --enable-config-udev-kms  --enable-dri2 --enable-dri --enable-dri3 --enable-dbe --enable-record --enable-systemd-logind --enable-glamor --enable-xwayland
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1579019597
+export SOURCE_DATE_EPOCH=1589808506
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/xorg-server
 cp %{_builddir}/xorg-server-1.20.7/COPYING %{buildroot}/usr/share/package-licenses/xorg-server/11d1ae389a1a78f7832586e4c2a0c3c7263b7475
