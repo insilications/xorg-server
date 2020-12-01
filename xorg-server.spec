@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x9C825A6605D40BBE (mattst88@gmail.com)
 #
 Name     : xorg-server
-Version  : 1.20.9
-Release  : 88
-URL      : https://www.x.org/releases/individual/xserver/xorg-server-1.20.9.tar.gz
-Source0  : https://www.x.org/releases/individual/xserver/xorg-server-1.20.9.tar.gz
-Source1  : https://www.x.org/releases/individual/xserver/xorg-server-1.20.9.tar.gz.sig
+Version  : 1.20.10
+Release  : 89
+URL      : https://www.x.org/releases/individual/xserver/xorg-server-1.20.10.tar.gz
+Source0  : https://www.x.org/releases/individual/xserver/xorg-server-1.20.10.tar.gz
+Source1  : https://www.x.org/releases/individual/xserver/xorg-server-1.20.10.tar.gz.sig
 Summary  : Modular X.Org X Server
 Group    : Development/Tools
 License  : MIT
@@ -87,12 +87,12 @@ Patch3: build.patch
 Patch4: 0001-add-default-keyboard-setup-for-xorg.patch
 
 %description
-=============
-What Is It ?
-============
-Xephyr is a a kdrive server that outputs to a window on a pre-existing
-'host' X display. Think Xnest but with support for modern extensions
-like composite, damage and randr.
+This is a submodule to access linux framebuffer devices.
+It is supported to work as helper module (like vgahw)
+for the chipset drivers.  There are functions for
+saving/restoring/setting video modes, set palette entries,
+and a few more helper functions.  Some of them can be
+hooked directly into ScrnInfoRec.
 
 %package bin
 Summary: bin components for the xorg-server package.
@@ -161,8 +161,8 @@ setuid components for the xorg-server package.
 
 
 %prep
-%setup -q -n xorg-server-1.20.9
-cd %{_builddir}/xorg-server-1.20.9
+%setup -q -n xorg-server-1.20.10
+cd %{_builddir}/xorg-server-1.20.10
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
@@ -173,7 +173,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1600894165
+export SOURCE_DATE_EPOCH=1606851381
 export GCC_IGNORE_WERROR=1
 export CFLAGS="-O3 -g -fopt-info-vec "
 unset LDFLAGS
@@ -185,10 +185,10 @@ export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fn
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1600894165
+export SOURCE_DATE_EPOCH=1606851381
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/xorg-server
-cp %{_builddir}/xorg-server-1.20.9/COPYING %{buildroot}/usr/share/package-licenses/xorg-server/11d1ae389a1a78f7832586e4c2a0c3c7263b7475
+cp %{_builddir}/xorg-server-1.20.10/COPYING %{buildroot}/usr/share/package-licenses/xorg-server/11d1ae389a1a78f7832586e4c2a0c3c7263b7475
 %make_install
 ## install_append content
 mkdir -p %{buildroot}/usr/share/defaults/etc/X11/xorg.conf.d/
