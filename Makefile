@@ -1,5 +1,5 @@
 PKG_NAME := xorg-server
-URL = https://www.x.org/releases/individual/xserver/xorg-server-1.20.10.tar.gz
+URL = https://gitlab.freedesktop.org/xorg/xserver.git
 ARCHIVES = 
 
 include ../common/Makefile.common

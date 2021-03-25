@@ -1,5 +1,5 @@
 0001-sdksyms.sh-Make-sdksyms.sh-work-with-gcc5.patch
 mmap-offset.patch
-build.patch
+#build.patch
 0001-add-default-keyboard-setup-for-xorg.patch
 #backport-gcc10.patch
